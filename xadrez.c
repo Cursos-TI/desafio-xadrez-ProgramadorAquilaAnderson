@@ -2,7 +2,7 @@
 
 int main () {
     int opcao;
-    int movimentos = 0;
+    
 
         printf("\n           ** JOGO DE XADREZ **\n\n");
         printf("Vamos movimentar três peças: torre, bispo e rainha.\n\n");
@@ -25,7 +25,7 @@ int main () {
                 printf("\n--- MOVIMENTO TORRE ---\n");
                 for (int i = 1; i <= 5; i++) {
                     printf("Movimento %d: DIREITA\n", i);
-                    movimentos++;
+                    i++;
                 }
                 break;
 
@@ -35,7 +35,7 @@ int main () {
                 do {
                     printf("Movimento %d: Diagonal para DIREITA e CIMA\n", i + 1);
                     i++;
-                    movimentos++;
+                    
                 } while (i < 3);
                 break;
             }
@@ -45,9 +45,8 @@ int main () {
                 int i = 0;
                 while (i < 3) {
                     printf("Movimento %d: Frente\n", i + 1);
-                    movimentos++;
-                    printf("Movimento %d: Cima\n", i + 1);
-                    movimentos++;
+                    i++;
+                    printf("Movimento %d: Cima\n", i + 1); 
                     i++;
                 }
                 break;
