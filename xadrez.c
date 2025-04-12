@@ -1,87 +1,87 @@
 #include <stdio.h> // Inclusão da biblioteca
 
+void moverTorre (int casas){  // Movimento recursivo da TORRE (horizontal para direita)
+    if (casas > 0) {
+        printf("Mover para casa da DIREITA \n");
+        moverTorre (casas -1);
+    }
+}
+    void moverBispo(int casas) { // Movimento do BISPO (diagonal direita e cima)
+        // Verifica se o número de casas é válido para movimento
+        if (casas <= 0) return;
+
+        // Iniciar posição inicial do bispo
+        int x = 0; // Linha inicial
+        int y = 0; // Coluna inicial
+
+        // Loop para mover o bispo 5 casas na diagonal
+        for (int i = 0; i < casas; i++) { // Loop externo para o movimento vertical de (i)
+
+            for (int j = 0; j < 1; j++) { // Loop interno para o movimento horizontal de (j)
+            printf("Mover para a casa DIAGONAL (DIREITA e CIMA)\n");
+            }
+        }
+    }
+        void moverRainha (int casas){
+            if (casas > 0){
+                printf("Mover para casa da esquerda\n");
+                moverRainha (casas -1);
+            }
+            
+        }
+            void moverCavalo() {
+                for (int i = 2; i <= 2; i++) { 
+                    for (int j = 1; j <= 1; j++) { 
+                        if ((i * i + j * j) == 5) {
+                            printf("Mover CAVALO: 2 para CIMA e 1 para DIREITA\n");
+                        }
+                    }
+                }
+            }
+
+        
 int main () { // Função principal
-
+            
     int opcao; // Variável para controlar das peças do jogo
+   
+    
+        printf("\n       ** JOGO DE XADREZ **\n\n");
+        printf("Vamos movimentar quatro peças: TORRE, BISPO, RAINHA e CAVALO.\n\n");
 
-        // Exibição inicial do jogo e instruções
-        printf("\n           ** JOGO DE XADREZ **\n\n");
-        printf("Vamos movimentar três peças: TORRE, BISPO e RAINHA.\n\n");
-        printf("INSTRUÇÕES DE MOVIMENTO DAS PEÇAS:\n\n");
-        printf("TORRE  => move uma casa para cada direção;\n");
-        printf("BISPO  => move na diagonal quantas casas necessárias;\n");
-        printf("RAINHA => move em qualquer direção quantas casas necessárias;\n\n");
-
-        // Menu de opções para escolha das peças
-        printf("__MENU__\n"); 
+    do {   // Loop para continuar mostrando o menu até que o usuário escolha a opção 0 (sair)
+            // Menu de opções para escolha das peças
+        printf("____MENU____\n"); 
         printf("  1. TORRE\n");
         printf("  2. BISPO\n");
         printf("  3. RAINHA\n");
         printf("  4. CAVALO\n");
         printf("  0. SAIR\n\n");
+
         // Entrada que mostra a opção escolhida
         printf("Escolha uma peça entre 1 e 4, (ou 0 para sair): ");
-        scanf("%d", &opcao); // mostra qual a escolha detro de menu
 
+        scanf("%d", &opcao); // mostra qual a escolha detro de menu
+     
         switch (opcao) { //Estrutura de decisão que execulta o bloco de código baseado na opção escolhida do menu
             case 1: // case da peça TORRE
                 printf("\n--- MOVIMENTO TORRE ---\n");
-                for (int i = 1; i <= 5; i++) { // Loop de repetição for (simula o 5 movimentos da peça)
-                    printf("Movimento %d: DIREITA\n", i);
-                }
+                moverTorre(5); // Função recurciva para movimento da torre
                 break;
 
             case 2: { // Casa da peça BISPO
                 printf("\n--- MOVIMENTO BISPO ---\n");
-
-                int i = 0;
-
-                do { // Loop de repetição (do while) para simular 3 movimentos da peça na diagonal, direita e cima
-                    printf("Movimento %d: Diagonal para DIREITA e CIMA\n", i + 1);
-                    i++;
-                } while (i < 3);
+                moverBispo(5);
                 break;
             }
 
             case 3: { // Casa da peça RAINHA
                 printf("\n--- MOVIMENTO RAINHA ---\n");
-                int i = 0;
-                while (i < 3) { // Loop de repetição while para simulara 3 movimetos da peça rainha
-                    printf("Movimento %d: Frente\n", i + 1);
-                    
-                    printf("Movimento %d: Cima\n", i + 1);
-                    i++;
-                }
+                moverRainha(8);
                 break;
             }
             case 4: { // Case da peça CAVALO
                 printf("\n--- MOVIMENTO CAVALO ---\n\n");
-    
-                // tipo de variável "Constante" para controlar 2 movimetos definido pela variável.
-                const int repeticoesMovimento = 2; // Quantidade de movimento em "L"
-                const int casasBaixo = 2; // Quantidade de movimetos para baixo
-                const int casasEsquerda = 1; // Quantidade de movimetos para esquerda
-    
-                // Loop externo FOR para controlar a repetição do movimento do cavalo em L por 2 vez (definido pela variável)
-                for (int i = 0; i < repeticoesMovimento; i++) {
-    
-                    // Loop interno DO-WHILE para simular o movimento "Baixo"
-                    int passo = 0;
-                    do {
-                        printf("Baixo\n");
-                         passo++;
-                    } while (passo < casasBaixo);
-    
-                    // Outro DO-WHILE para simular o movimento "Esquerda"
-                    int esquerda = 0;
-                    do {
-                        printf("Esquerda\n");
-                        esquerda++;
-                    } while (esquerda < casasEsquerda);
-    
-                    printf("\n"); // Pular uma linha para separar o movimento em L da peça "Cavalo"
-                }
-    
+                moverCavalo();
                 break;
             }
             case 0: // Case para sair do jogo
@@ -89,11 +89,16 @@ int main () { // Função principal
                 break;
 
             default: // case padrão caso seja digitada uma opção errada do menu
-                printf("Opção inválida! Tente novamente.\n");
+                printf("\nOpção inválida! Tente novamente.\n");
                 break;
         }
-
+        // Mensagem para o usuário escolher outra opção
+        if (opcao != 0) {
+            printf("\nEscolha outra peça:\n");
+        }
+    } while (opcao != 0); // O loop continua até o usuário escolher a opção 0 (sair)
     
+
     printf("\nObrigado por jogar!\n\n"); // Mensagem de agradecimeto
 
     return 0; // Fim do prograrma
